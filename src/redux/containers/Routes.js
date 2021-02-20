@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import CarList from './CarList';
 import Car from './Car';
+import Registration from '../../components/auth/Registration';
 
 const Routes = () => (
   <BrowserRouter>
@@ -11,6 +12,7 @@ const Routes = () => (
       <Route path="/" exact component={CarList} />
       <Route path="/Cars" exact component={CarList} />
       <Route path="/Cars/:id" exact component={Car} />
+      <Route path="/Registration" exact component={Registration} />
     </Switch>
   </BrowserRouter>
 );
