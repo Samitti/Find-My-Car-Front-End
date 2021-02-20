@@ -1,9 +1,7 @@
-// import axios from 'axios';
 /* eslint-disable */
 import React, { Component } from 'react'
-
 import axios from 'axios';
-/* eslint-disable */
+
 export default class Registration extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +9,7 @@ export default class Registration extends Component {
     this.state = {
       email: '',
       password: '',
-      password_confirmation: '',
+      passwordConfirmation: '',
       registrationErrors: '',
     };
 
@@ -26,25 +24,54 @@ export default class Registration extends Component {
       passwordConfirmation,
     } = this.state;
 
-    axios.post('https://sami-car-api-image.herokuapp.com/api/v1/sessions', {
-      user: {
-        email,
-        password,
-        passwordConfirmation,
-      },
+    
+    const formData = new FormData();
+
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('password_confirmation', passwordConfirmation);
+
+    fetch("http://localhost:3001/api/v1/users", {
+        method: 'post',
+        body: formData
     },
     { withCredentials: true }).then(response => {
       console.log('resgistration re', response);
     }).catch(error => {
       console.log('registration error', error);
     });
-    event.preventDefault();
-  }
+    
+    // var session_url = 'http://localhost:3001/api/v1/users';
+    // axios.post(session_url, {}, {
+    //   auth: {
+    //     email: email,
+    //     password: password,
+    //     password_confirmation: passwordConfirmation
+    //   }
+    // }).then(function(response) {
+    //   console.log('Authenticated');
+    // }).catch(function(error) {
+    //   console.log('Error on Authentication');
+    // });
 
-  handleChange(e) {
-    this.state({
-      [e.target.name]: e.target.value,
-    });
+  //   axios.post('http://localhost:3001/api/v1/users', {
+  //     user: {
+  //       email,
+  //       password,
+  //       passwordConfirmation,
+  //     },
+  //   },
+  //   { withCredentials: true }).then(response => {
+  //     console.log('resgistration re', response);
+  //   }).catch(error => {
+  //     console.log('registration error', error);
+  //   });
+}
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   render() {
@@ -60,7 +87,7 @@ export default class Registration extends Component {
             required
           />
           <input
-            type="pasword"
+            type="password"
             name="password"
             placeholder="Password"
             value={this.state.password}
@@ -71,10 +98,11 @@ export default class Registration extends Component {
             type="password"
             name="passwordConfirmation"
             placeholder="Password Confirmation"
-            value={this.state.pasword}
+            value={this.state.passwordConfirmation}
             onChange={this.handleChange}
             required
           />
+
           <button type="submit">Register</button>
         </form>
       </div>

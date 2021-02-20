@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const optionsList = {
-  method: 'GET',
+  method: 'POST',
   url: 'https://sami-car-api-image.herokuapp.com/api/v1/user',
 };
 
