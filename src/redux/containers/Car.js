@@ -9,7 +9,7 @@ const Car = props => {
   const dispatch = useDispatch();
   const gotId = match.params.id;
   const gotIdInt = parseInt(gotId, 10);
-  const carList = useSelector(state => state.CarList.data.data);
+  const carList = useSelector(state => state.CarList.data);
 
   React.useEffect(() => {
     if (carList.length === 0) {
@@ -23,7 +23,7 @@ const Car = props => {
         ? (
           <div className="carItemCar">
             <p>{car.name}</p>
-            <img className="caritemImgCar" src={car.image_url} alt={car.id} />
+            <img className="caritemImgCar" src={car.image} alt={car.id} />
           </div>
         )
         : <p /> }

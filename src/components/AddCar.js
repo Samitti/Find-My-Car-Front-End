@@ -1,34 +1,62 @@
-import * as React from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import CreateCar from '../redux/actions/addCarAction';
+import React, { Component } from 'react';
+// import { useForm } from 'react-hook-form';
+// import { useDispatch } from 'react-redux';
+// import CreateCar from '../redux/actions/addCarAction';
 // import axios from 'axios';
+/* eslint-disable */
+class AddCar extends Component {
+  constructor(props) {
+    super(props);
 
-export default function AddCar() {
-  const { register, handleSubmit } = useForm();
-  const dispatch = useDispatch();
-  // const onSubmit = data => {
-  //   console.log(data.image[0]);
-  //   dispatch(CreateCar(data));
-  // };
-  const onSubmit = data => {
-    const formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('model', data.model);
-    formData.append('price', data.price);
-    formData.append('image', data.image[0]);
-    dispatch(CreateCar(data));
+    this.state = {
+      name: '',
+      model: '',
+      price: '',
+      featuredImage: null,
+    };
+  }
+
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+  onImageChange = event => {
+    this.setState({ featuredImage: event.target.files[0] });
+  };
 
-      <input name="name" type="text" ref={register} placeholder="Car Name" />
-      <input name="model" type="text" ref={register} placeholder="Car Model" />
-      <input name="price" type="number" ref={register} placeholder="Car Price" />
-      <input name="image" type="file" accept="image/png, image/jpeg" ref={register} placeholder="Car Image" />
+  handleSubmit = event => {
+    event.preventDefault();
+    const {
+      name,
+      model,
+      price,
+      featuredImage,
+    } = this.state;
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('model', model);
+    formData.append('price', price);
+    formData.append('featured_image', featuredImage);
+    fetch('http://localhost:3001/api/v1/cars', {
+      method: 'POST',
+      body: formData,
+    })
+      .catch(error => console.log(error));
+  }
 
-      <input type="submit" />
-    </form>
-  );
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+
+        <input name="name" type="text" value={this.state.name} onChange={this.handleChange} placeholder="Car Name" />
+        <input name="model" type="text" value={this.state.model} onChange={this.handleChange} placeholder="Car Model" />
+        <input name="price" type="number" value={this.state.price} onChange={this.handleChange} placeholder="Car Price" />
+        <input type="file" accept="image/*" multiple={false} onChange={this.onImageChange} />
+
+        <input type="submit" />
+      </form>
+    );
+  }
 }
+
+export default AddCar;
