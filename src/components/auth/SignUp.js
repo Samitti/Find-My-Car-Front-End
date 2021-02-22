@@ -10,7 +10,6 @@ export default function Registration() {
   const dispatch = useDispatch();
   // const onSubmit = data => alert(JSON.stringify(data));
   const onSubmit = data => {
-    console.log(data);
     dispatch(UserRegister(data));
   };
 

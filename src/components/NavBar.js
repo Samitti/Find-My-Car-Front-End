@@ -7,6 +7,8 @@ const NavBar = () => (
     <br />
     <a href="/SignIn" id="home">SIGN IN</a>
     <br />
+    <a href="/AddCar" id="home">ADD CAR</a>
+    <br />
     <a href="/SignUp" id="home">SIGN UP</a>
 
   </nav>

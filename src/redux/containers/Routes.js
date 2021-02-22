@@ -6,6 +6,7 @@ import CarList from './CarList';
 import Car from './Car';
 import SignIn from '../../components/auth/SignIn';
 import SignUp from '../../components/auth/SignUp';
+import AddCar from '../../components/AddCar';
 
 const Routes = () => (
   <BrowserRouter>
@@ -15,7 +16,7 @@ const Routes = () => (
       <Route path="/Cars/:id" exact component={Car} />
       <Route path="/SignIn" exact component={SignIn} />
       <Route path="/SignUp" exact component={SignUp} />
-
+      <Route path="/AddCar" exact component={AddCar} />
     </Switch>
   </BrowserRouter>
 );

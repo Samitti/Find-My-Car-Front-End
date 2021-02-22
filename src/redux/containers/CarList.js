@@ -7,7 +7,7 @@ import '../../App.css';
 
 const CarList = () => {
   const dispatch = useDispatch();
-  const carList = useSelector(state => state.CarList.data);
+  const carList = useSelector(state => state.CarList.data.data);
 
   const optionsList = {
     method: 'GET',
