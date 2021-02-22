@@ -1,11 +1,6 @@
 import axios from 'axios';
 
-const optionsList = {
-  method: 'GET',
-  url: 'https://sami-car-api-image.herokuapp.com/api/v1/cars',
-};
-
-const GetCarList = () => async dispatch => {
+const GetCarList = optionsList => async dispatch => {
   dispatch({
     type: 'CAR_LIST_LOADING',
   });

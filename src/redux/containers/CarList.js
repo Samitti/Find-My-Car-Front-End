@@ -9,9 +9,14 @@ const CarList = () => {
   const dispatch = useDispatch();
   const carList = useSelector(state => state.CarList.data);
 
+  const optionsList = {
+    method: 'GET',
+    url: 'http://localhost:3001/api/v1/cars',
+  };
+
   React.useEffect(() => {
     if (carList.length === 0) {
-      dispatch(GetCarList());
+      dispatch(GetCarList(optionsList));
     }
   }, [dispatch]);
 
