@@ -1,16 +1,21 @@
 .App {
   text-align: center;
+  height: 100%;
 }
 
-.navBar {
+.app-main {
+  margin-top: 64px;
+}
+/* 
+.navBarxxxx {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  max-width: 598px;
   height: 60px;
 }
 
-nav h1 {
+.navxxxx h1 {
   margin-left: 40px;
   color: rgb(78, 77, 77);
   font-weight: 300;
@@ -23,9 +28,42 @@ nav h1 {
 nav a {
   margin-right: 10px;
   text-decoration: none;
-  background-color: rgb(189, 189, 189);
   color: white;
   font-size: 20px;
   border-radius: 3px;
   padding: 0 10px 1px 10px;
+} */
+
+.carItem {
+  width: 100%;
+}
+
+.caritemImgCar {
+  width: 100%;
+}
+
+.carName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.carName p {
+  margin-left: 20px;
+  color: gray;
+  font-weight: 500;
+}
+
+.carName #viewLink {
+  margin-right: 20px;
+  text-decoration: none;
+  color: gray;
+  font-weight: 500;
+
+}
+
+.carListContainer {
+  width: 90%;
+  margin: auto;
+  background-color: white;
 }

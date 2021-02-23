@@ -10,6 +10,8 @@ const UserCreate = data => async dispatch => {
       email: data.email,
       password: data.password,
     }).then(response => {
+    localStorage.setItem('user', response.data);
+    // console.log(response.data);
     dispatch({
       type: 'USER_CREATE_SUCCESS',
       payload: response,
