@@ -11,6 +11,7 @@ const UserRegister = data => async dispatch => {
       password: data.password,
       password_confirmation: data.passwordConfirmation,
     }).then(response => {
+    localStorage.setItem('user', response.data);
     dispatch({
       type: 'USER_CREATE_SUCCESS',
       payload: response,

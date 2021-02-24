@@ -56,6 +56,24 @@
   background-color: white;
 }
 
+.cackbtn {
+  position: fixed;
+  top: 10px;
+  left: 80px;
+  margin-left: 5%;
+  width: 50px;
+  z-index: 300;
+  padding-right: 20px;
+  font-size: 25px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cackbtn a {
+  text-decoration: none;  
+  color: gray;
+}
+
 .car-detail-table {
   display: flex;
   flex-direction: column;
@@ -89,4 +107,5 @@
   color: white;
   background-color: tomato;
   font-size: 20px;
+  cursor: pointer;
 }

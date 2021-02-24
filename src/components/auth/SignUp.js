@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import UserRegister from '../../redux/actions/signUpActions';
 import './form.css';
 
@@ -9,9 +10,21 @@ import './form.css';
 export default function Registration() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
-  // const onSubmit = data => alert(JSON.stringify(data));
+  const history = useHistory();
+  let loggedInUser = '';
+  const login = () => {
+    setTimeout(() => {
+      loggedInUser = localStorage.getItem('user');
+      if (loggedInUser) {
+        history.push('/cars');
+      } else {
+        alert('Sin Up Fail!');
+      }
+    }, 2000);
+  };
   const onSubmit = data => {
     dispatch(UserRegister(data));
+    login();
   };
 
   return (
