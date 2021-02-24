@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './AddCar.css';
 // import { useForm } from 'react-hook-form';
 // import { useDispatch } from 'react-redux';
 // import CreateCar from '../redux/actions/addCarAction';
@@ -46,7 +47,9 @@ class AddCar extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div className="add-car">
+        <p>Add Car</p>
+      <form className="add-car-form" onSubmit={this.handleSubmit}>
 
         <input name="name" type="text" value={this.state.name} onChange={this.handleChange} placeholder="Car Name" />
         <input name="model" type="text" value={this.state.model} onChange={this.handleChange} placeholder="Car Model" />
@@ -55,6 +58,7 @@ class AddCar extends Component {
 
         <input type="submit" />
       </form>
+      </div>
     );
   }
 }

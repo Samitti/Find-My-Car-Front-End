@@ -22,8 +22,22 @@ const Car = props => {
       {car.id === gotIdInt
         ? (
           <div className="carItemCar">
-            <p>{car.name}</p>
             <img className="caritemImgCar" src={car.image} alt={car.id} />
+            <div className="car-detail-table">
+              <h2>Car Details</h2>
+              <p className="car-name">
+                <span>Car Name: </span>
+                {car.name}
+              </p>
+              <p className="car-model">
+                <span>Car Model: </span>
+                {car.model}
+              </p>
+              <p className="car-price">
+                <span>Car Price: $</span>
+                {car.price}
+              </p>
+            </div>
           </div>
         )
         : <p /> }
@@ -51,8 +65,8 @@ const Car = props => {
 
   return (
     <div>
-      <p>Car Details</p>
       {showData()}
+      <button className="fav-button" type="button">Add to favorite</button>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import UserRegister from '../../redux/actions/signUpActions';
+import './form.css';
 
 // import Headers from "./Header";
 
@@ -14,9 +15,9 @@ export default function Registration() {
   };
 
   return (
-    <div>
+    <div className="signup">
       <p>Sign Up</p>
-      <form className="signin-form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="signup-form" onSubmit={handleSubmit(onSubmit)}>
 
         <input name="email" type="email" ref={register} placeholder="Email" />
         <input name="password" type="password" ref={register} placeholder="Password" />

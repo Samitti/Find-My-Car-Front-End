@@ -12,7 +12,7 @@ export default function SignIn() {
   };
 
   return (
-    <div>
+    <div className="signin">
       <p>Sin In</p>
       <form className="signin-form" onSubmit={handleSubmit(onSubmit)}>
 

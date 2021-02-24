@@ -9,7 +9,7 @@ const SideDrawer = () => {
   const userLinks = (
     <ul>
       <li><a href="/" onClick={() => localStorage.setItem('user', '')}>Sign Out</a></li>
-      <li><a href="/AddCar" id="home">Add Car</a></li>
+      <li><a href="/AddCar" id="home">Add New Car</a></li>
     </ul>
   );
   const guestLinks = (

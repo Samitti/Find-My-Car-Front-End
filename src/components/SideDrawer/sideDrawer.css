@@ -31,9 +31,3 @@
 .side_drawer a:active {
   color: black;
 }
-
-@media (min-width: 600px) {
-  .side_drawer {
-    display: none;
-   }
-}

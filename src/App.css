@@ -6,36 +6,12 @@
 .app-main {
   margin-top: 64px;
 }
-/* 
-.navBarxxxx {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 598px;
-  height: 60px;
-}
-
-.navxxxx h1 {
-  margin-left: 40px;
-  color: rgb(78, 77, 77);
-  font-weight: 300;
-}
-
-.all-inks {
-  margin-right: 30px;
-}
-
-nav a {
-  margin-right: 10px;
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-  border-radius: 3px;
-  padding: 0 10px 1px 10px;
-} */
 
 .carItem {
   width: 100%;
+  margin-bottom: 50px;
+  background-color: white;
+  box-shadow: 3px 3px 10px rgb(172, 172, 172);
 }
 
 .caritemImgCar {
@@ -59,11 +35,58 @@ nav a {
   text-decoration: none;
   color: gray;
   font-weight: 500;
-
 }
 
 .carListContainer {
   width: 90%;
   margin: auto;
+  padding-bottom: 20px;
+}
+
+.carListContainerCar {
+  width: 100%;
+}
+
+.carItemCar {
+  display: flex;  
+  flex-direction: column;
+  align-items: baseline;
+  width: 100%;
+  margin-bottom: 50px;
   background-color: white;
+}
+
+.car-detail-table {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 60px;
+}
+
+.carItemCar h2 {
+  margin: 20px;
+  padding-left: 30px;
+  color: rgb(53, 52, 52);
+}
+
+.carItemCar p {
+  font-size: 20px;
+  padding: 10px;
+  color: gray;
+  margin: 0;
+  padding-left: 50px;
+}
+
+.fav-button {
+  width: 100%;
+  border: none;
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  color: white;
+  background-color: tomato;
+  font-size: 20px;
 }
