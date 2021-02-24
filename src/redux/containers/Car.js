@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import GetCarList from '../actions/carActions';
+import likeCar from '../actions/addLike';
 
 const Car = props => {
   const { match } = props;
@@ -43,6 +44,15 @@ const Car = props => {
         : <p /> }
     </article>
   ));
+  const loggedInUser = localStorage.getItem('user');
+  const userId = parseInt(loggedInUser, 10);
+  const handleFavorate = () => {
+    const data = {
+      user_id: userId,
+      car_id: gotIdInt,
+    };
+    likeCar(data);
+  };
   const showData = () => {
     if (!_.isEmpty(carList)) {
       return (
@@ -67,7 +77,7 @@ const Car = props => {
     <div>
       <div className="cackbtn" type="button"><a href="/">{backSign}</a></div>
       {showData()}
-      <button className="fav-button" type="button">Add to favorite</button>
+      <button className="fav-button" type="button" onClick={handleFavorate}>Add to favorite</button>
     </div>
   );
 };
