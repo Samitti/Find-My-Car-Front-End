@@ -4,7 +4,7 @@ import axios from 'axios';
 const likeCar = data => {
   // const history = useHistory();
 
-  axios.post('http://localhost:3001/api/v1/likes',
+  axios.post('https://car-api-rails.herokuapp.com/api/v1/likes',
     {
       user_id: data.user_id,
       car_id: data.car_id,

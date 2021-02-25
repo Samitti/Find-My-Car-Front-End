@@ -11,7 +11,7 @@ const CarList = () => {
 
   const optionsList = {
     method: 'GET',
-    url: 'http://localhost:3001/api/v1/cars',
+    url: 'https://car-api-rails.herokuapp.com/api/v1/cars',
   };
 
   React.useEffect(() => {

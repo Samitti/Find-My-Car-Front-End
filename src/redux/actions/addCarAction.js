@@ -5,7 +5,7 @@ const CreateCar = (formData, imageData) => async dispatch => {
     type: 'CAR_CREATE_LOADING',
   });
 
-  axios.post('http://localhost:3001/api/v1/cars',
+  axios.post('https://car-api-rails.herokuapp.com/api/v1/cars',
     {
       name: formData.name,
       model: formData.model,

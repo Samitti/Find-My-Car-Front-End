@@ -38,7 +38,7 @@ class AddCar extends Component {
     formData.append('model', model);
     formData.append('price', price);
     formData.append('featured_image', featuredImage);
-    fetch('http://localhost:3001/api/v1/cars', {
+    fetch('https://car-api-rails.herokuapp.com/api/v1/cars', {
       method: 'POST',
       body: formData,
     })
