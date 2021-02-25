@@ -5,7 +5,7 @@ const UserRegister = data => async dispatch => {
     type: 'USER_CREATE_LOADING',
   });
 
-  axios.post('https://car-api-rails.herokuapp.com/api/v1/users',
+  axios.post('https://car-api-final.herokuapp.com/api/v1/users',
     {
       email: data.email,
       password: data.password,

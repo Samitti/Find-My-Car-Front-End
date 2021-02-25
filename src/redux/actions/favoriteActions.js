@@ -5,7 +5,7 @@ const GetFavoriteCarList = () => async dispatch => {
     type: 'CAR_LIST_LOADING',
   });
 
-  axios.get('https://car-api-rails.herokuapp.com/api/v1/likes').then(response => {
+  axios.get('https://car-api-final.herokuapp.com/api/v1/likes').then(response => {
     dispatch({
       type: 'CAR_LIST_SUCCESS',
       payload: response.data.data,
