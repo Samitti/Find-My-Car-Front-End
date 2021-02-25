@@ -30,6 +30,12 @@
   font-weight: 500;
 }
 
+.carName h4 {
+  margin-left: 20px;
+  color: rgb(32, 32, 32);
+  font-weight: 800;
+}
+
 .carName #viewLink {
   margin-right: 20px;
   text-decoration: none;

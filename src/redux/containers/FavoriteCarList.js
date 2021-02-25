@@ -27,10 +27,10 @@ const FavoriteCarList = () => {
       {/* {favCarIds.includes(car.id) ? 'orange' : 'gray'} */}
       {favCarIds.includes(car.id)
         ? (
-          <div className="carItemCar">
+          <div className="carItem">
             <img className="caritemImgCar" src={car.image} alt={car.id} />
-            <div className="car-detail-table">
-              <h2>Car Details</h2>
+            <div className="carName">
+              <h4>My Favorate</h4>
               <p className="car-name">
                 <span>Car Name: </span>
                 {car.name}
@@ -74,10 +74,6 @@ const FavoriteCarList = () => {
 
   return (
     <div>
-      <p>
-        Current User ID :
-        {loggedInUser}
-      </p>
       {showData()}
     </div>
   );

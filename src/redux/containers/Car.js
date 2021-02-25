@@ -11,7 +11,7 @@ const Car = props => {
   const gotId = match.params.id;
   const gotIdInt = parseInt(gotId, 10);
   const carList = useSelector(state => state.CarList.data);
-  const backSign = '<';
+  const backSign = '';
   React.useEffect(() => {
     if (carList.length === 0) {
       dispatch(GetCarList());
