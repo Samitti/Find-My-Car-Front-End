@@ -20,6 +20,8 @@ const CarList = () => {
     }
   }, [dispatch]);
 
+  localStorage.setItem('carsLocal', JSON.stringify(carList));
+
   const carElements = carList.map(car => (
     <article key={car.id} className="carItem">
       <img className="caritemImgCar" src={car.image} alt={car.id} />
