@@ -15,10 +15,10 @@ This is the final capstone project for Microverse program. In this project, I bu
 - CSS
 
 
-[Live Demo Link]()
+[Live Demo Link](https://car-api-react.herokuapp.com/)
 
 
-![screenshot 1](),
+![screenshot 1](./public/screenshoot.png),
 
 ## Getting Started
 
