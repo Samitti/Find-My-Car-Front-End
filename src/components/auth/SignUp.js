@@ -20,7 +20,7 @@ export default function Registration() {
       } else {
         alert('Sin Up Fail!');
       }
-    }, 2000);
+    }, 4000);
   };
   const onSubmit = data => {
     dispatch(UserRegister(data));

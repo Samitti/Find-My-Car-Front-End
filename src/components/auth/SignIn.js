@@ -18,7 +18,7 @@ export default function SignIn() {
       } else {
         alert('Sin In Fail!');
       }
-    }, 2000);
+    }, 4000);
   };
   const onSubmit = data => {
     dispatch(UserCreate(data));
