@@ -27,7 +27,7 @@
 }
 
 .toolbar_navigation_items a {
-  text-decoration: none;  
+  text-decoration: none;
   color: gray;
   text-transform: none;
 }
@@ -36,7 +36,7 @@
   margin-left: 30%;
 }
 
-.toolbar_logo a {  
+.toolbar_logo a {
   color: gray;
   text-decoration: none;
   font-size: 1.5rem;
