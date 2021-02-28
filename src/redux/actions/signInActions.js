@@ -5,12 +5,12 @@ const UserCreate = data => async dispatch => {
     type: 'USER_CREATE_LOADING',
   });
 
-  axios.post('https://car-api-final.herokuapp.com/api/v1/sessions',
+  axios.post('http://localhost:3001/api/v1/sessions',
     {
       email: data.email,
       password: data.password,
     }).then(response => {
-    localStorage.setItem('user', response.data.id);
+    localStorage.setItem('jwtoken', response.data);
     dispatch({
       type: 'USER_CREATE_SUCCESS',
       payload: response,

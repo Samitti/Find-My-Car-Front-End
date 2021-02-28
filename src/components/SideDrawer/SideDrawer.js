@@ -4,7 +4,7 @@ import './sideDrawer.css';
 
 const SideDrawer = () => {
   useSelector(state => state.User.data.data);
-  const loggedInUser = localStorage.getItem('user');
+  const loggedInUser = localStorage.getItem('jwtoken');
 
   const userLinks = (
     <ul>

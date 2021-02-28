@@ -12,7 +12,7 @@ export default function SignIn() {
   let loggedInUser = '';
   const login = () => {
     setTimeout(() => {
-      loggedInUser = localStorage.getItem('user');
+      loggedInUser = localStorage.getItem('jwtoken');
       if (loggedInUser) {
         history.push('/cars');
       } else {

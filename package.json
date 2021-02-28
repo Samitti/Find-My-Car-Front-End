@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.1.10",
     "activestorage": "^5.2.4-5",
     "axios": "^0.21.1",
+    "jwt-decode": "^3.1.2",
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

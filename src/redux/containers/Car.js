@@ -1,16 +1,17 @@
 import React from 'react';
+import jwtDecode from 'jwt-decode';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import GetCarList from '../actions/carActions';
-import likeCar from '../actions/addLike';
+// import likeCar from '../actions/addLike';
 
 const Car = props => {
   const { match } = props;
   const dispatch = useDispatch();
   const gotId = match.params.id;
   const gotIdInt = parseInt(gotId, 10);
-  const carList = useSelector(state => state.CarList.data);
+  const carList = useSelector(state => state.CarList.data.cars);
   const backSign = '';
   React.useEffect(() => {
     if (carList.length === 0) {
@@ -44,14 +45,19 @@ const Car = props => {
         : <p /> }
     </article>
   ));
-  const loggedInUser = localStorage.getItem('user');
-  const userId = parseInt(loggedInUser, 10);
   const handleFavorate = () => {
-    const data = {
-      user_id: userId,
-      car_id: gotIdInt,
-    };
-    likeCar(data);
+    const loggedInUser = localStorage.getItem('jwtoken');
+    const result = jwtDecode(loggedInUser);
+    const formData = new FormData();
+    formData.append('user_id', result.id);
+    formData.append('car_id', gotIdInt);
+
+    console.log(result.id);
+    fetch('http://localhost:3001/api/v1/likes', {
+      method: 'POST',
+      body: formData,
+      headers: { Authorization: `Bearer ${loggedInUser}` },
+    }).then(response => console.log(response)).catch(error => console.log(error));
   };
   const showData = () => {
     if (!_.isEmpty(carList)) {

@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const GetFavoriteCarList = () => async dispatch => {
+const GetFavoriteCarList = optionsList => async dispatch => {
   dispatch({
     type: 'CAR_LIST_LOADING',
   });
 
-  axios.get('https://car-api-final.herokuapp.com/api/v1/likes').then(response => {
+  axios.request(optionsList).then(response => {
     dispatch({
       type: 'CAR_LIST_SUCCESS',
       payload: response.data.data,

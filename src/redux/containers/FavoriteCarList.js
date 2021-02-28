@@ -1,5 +1,6 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import GetFavoriteCarList from '../actions/favoriteActions';
@@ -8,21 +9,32 @@ import '../../App.css';
 const FavoriteCarList = () => {
   const dispatch = useDispatch();
   const favoriteCarList = useSelector(state => state.FavoriteCarList.data);
-  const loggedInUser = localStorage.getItem('user');
+  const loggedInUser = localStorage.getItem('jwtoken');
   const localCars = JSON.parse(localStorage.getItem('carsLocal'));
 
-  const userId = parseInt(loggedInUser, 10);
+  const result = jwtDecode(loggedInUser);
+  const userId = result.id;
+
+  const optionsList = {
+    method: 'GET',
+    url: 'http://localhost:3001/api/v1/likes',
+    headers: {
+      Authorization: `Bearer ${loggedInUser}`,
+    },
+  };
 
   React.useEffect(() => {
     if (favoriteCarList.length === 0) {
-      dispatch(GetFavoriteCarList());
+      dispatch(GetFavoriteCarList(optionsList));
     }
   }, [dispatch]);
+
+  console.log(favoriteCarList);
+
   const thisUserFavs = favoriteCarList.filter(fav => fav.user_id === userId);
   const favCarIds = thisUserFavs.map(car => car.car_id);
-  console.log(favCarIds);
 
-  const myFav = localCars.map(car => (
+  const myFav = localCars.cars.map(car => (
     <article key={car.id} className="favItem">
       {/* {favCarIds.includes(car.id) ? 'orange' : 'gray'} */}
       {favCarIds.includes(car.id)

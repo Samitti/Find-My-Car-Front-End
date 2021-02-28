@@ -5,12 +5,12 @@ import './Toolbar.css';
 
 const toolbar = props => {
   useSelector(state => state.User.data.data);
-  const loggedInUser = localStorage.getItem('user');
+  const loggedInUser = localStorage.getItem('jwtoken');
 
   const userLinks = (
     <ul>
       <li><a href="/AddCar" id="home">Add Car</a></li>
-      <li><a href="/" onClick={() => localStorage.setItem('user', '')}>Sign Out</a></li>
+      <li><a href="/" onClick={() => localStorage.setItem('jwtoken', '')}>Sign Out</a></li>
     </ul>
   );
   const guestLinks = (

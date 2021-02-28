@@ -8,10 +8,14 @@ import '../../App.css';
 const CarList = () => {
   const dispatch = useDispatch();
   const carList = useSelector(state => state.CarList.data);
+  const loggedInUser = localStorage.getItem('jwtoken');
 
   const optionsList = {
     method: 'GET',
-    url: 'https://car-api-final.herokuapp.com/api/v1/cars',
+    url: 'http://localhost:3001/api/v1/cars',
+    headers: {
+      Authorization: `Bearer ${loggedInUser}`,
+    },
   };
 
   React.useEffect(() => {
@@ -21,8 +25,8 @@ const CarList = () => {
   }, [dispatch]);
 
   localStorage.setItem('carsLocal', JSON.stringify(carList));
-
-  const carElements = carList.map(car => (
+  const freshData = carList.length === 0 ? [] : carList.cars;
+  const carElements = freshData.map(car => (
     <article key={car.id} className="carItem">
       <img className="caritemImgCar" src={car.image} alt={car.id} />
       <div className="carName">

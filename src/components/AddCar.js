@@ -38,9 +38,12 @@ class AddCar extends Component {
     formData.append('model', model);
     formData.append('price', price);
     formData.append('featured_image', featuredImage);
-    fetch('https://car-api-final.herokuapp.com/api/v1/cars', {
+    const loggedInUser = localStorage.getItem('jwtoken');
+
+    fetch('http://localhost:3001/api/v1/cars', {
       method: 'POST',
       body: formData,
+      headers: {"Authorization" : `Bearer ${loggedInUser}`}
     })
       .catch(error => console.log(error));
   }
