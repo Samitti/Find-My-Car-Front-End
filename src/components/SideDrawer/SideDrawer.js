@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './sideDrawer.css';
 
 const SideDrawer = () => {
@@ -8,9 +9,9 @@ const SideDrawer = () => {
 
   const userLinks = (
     <ul>
-      <li><a href="/" onClick={() => localStorage.setItem('user', '')}>Sign Out</a></li>
-      <li><a href="/AddCar" id="home">Add New Car</a></li>
-      <li><a href="/Favorite" id="home">My Favorite</a></li>
+      <li><a href="/" onClick={() => localStorage.setItem('jwtoken', '')}>Sign Out</a></li>
+      <li><Link to="/AddCar" id="home">Add New Car</Link></li>
+      <li><Link to="/Favorite" id="home">My Favorite</Link></li>
     </ul>
   );
   const guestLinks = (

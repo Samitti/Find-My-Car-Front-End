@@ -9,8 +9,9 @@ import '../../App.css';
 const FavoriteCarList = () => {
   const dispatch = useDispatch();
   const favoriteCarList = useSelector(state => state.FavoriteCarList.data);
+  const CarList = useSelector(state => state.CarList.data);
+
   const loggedInUser = localStorage.getItem('jwtoken');
-  const localCars = JSON.parse(localStorage.getItem('carsLocal'));
 
   const result = jwtDecode(loggedInUser);
   const userId = result.id;
@@ -29,14 +30,11 @@ const FavoriteCarList = () => {
     }
   }, [dispatch]);
 
-  console.log(favoriteCarList);
-
   const thisUserFavs = favoriteCarList.filter(fav => fav.user_id === userId);
   const favCarIds = thisUserFavs.map(car => car.car_id);
 
-  const myFav = localCars.cars.map(car => (
+  const myFav = CarList.cars.map(car => (
     <article key={car.id} className="favItem">
-      {/* {favCarIds.includes(car.id) ? 'orange' : 'gray'} */}
       {favCarIds.includes(car.id)
         ? (
           <div className="carItem">

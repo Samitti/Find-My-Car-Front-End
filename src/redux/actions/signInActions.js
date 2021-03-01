@@ -14,6 +14,7 @@ const UserCreate = data => async dispatch => {
     dispatch({
       type: 'USER_CREATE_SUCCESS',
       payload: response,
+      isAuthenticated: true,
     });
   }).catch(() => {
     dispatch({

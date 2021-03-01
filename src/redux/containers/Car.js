@@ -51,8 +51,6 @@ const Car = props => {
     const formData = new FormData();
     formData.append('user_id', result.id);
     formData.append('car_id', gotIdInt);
-
-    console.log(result.id);
     fetch('http://localhost:3001/api/v1/likes', {
       method: 'POST',
       body: formData,

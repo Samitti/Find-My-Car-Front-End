@@ -1,9 +1,6 @@
 import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
 
 const likeCar = data => {
-  // const history = useHistory();
-
   axios.post('https://car-api-final.herokuapp.com/api/v1/likes',
     {
       user_id: data.user_id,

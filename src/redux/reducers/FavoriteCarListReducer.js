@@ -6,21 +6,21 @@ const DefaultState = {
 
 const FavoriteCarListReducer = (state = DefaultState, action) => {
   switch (action.type) {
-    case 'CAR_LIST_LOADING':
+    case 'FAV_LIST_LOADING':
       return {
         ...state,
         loading: true,
         errorMsg: '',
       };
 
-    case 'CAR_LIST_FAIL':
+    case 'FAV_LIST_FAIL':
       return {
         ...state,
         loading: false,
         errorMsg: 'Unable to get Favs msgFrom FavListReducer',
       };
 
-    case 'CAR_LIST_SUCCESS':
+    case 'FAV_LIST_SUCCESS':
       return {
         ...state,
         loading: false,

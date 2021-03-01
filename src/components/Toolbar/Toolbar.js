@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import './Toolbar.css';
 
@@ -9,14 +10,14 @@ const toolbar = props => {
 
   const userLinks = (
     <ul>
-      <li><a href="/AddCar" id="home">Add Car</a></li>
+      <li><Link to="/AddCar" id="home">Add Car</Link></li>
       <li><a href="/" onClick={() => localStorage.setItem('jwtoken', '')}>Sign Out</a></li>
     </ul>
   );
   const guestLinks = (
     <ul>
-      <li><a href="/SignIn">Sign In</a></li>
-      <li><a href="/SignUp">Sign Up</a></li>
+      <li><Link to="/SignIn">Sign In</Link></li>
+      <li><Link to="/SignUp">Sign Up</Link></li>
     </ul>
   );
 
@@ -26,7 +27,7 @@ const toolbar = props => {
         <div className="toggle_toolbar_button">
           <DrawerToggleButton click={props.drawerClickHandler} />
         </div>
-        <div className="toolbar_logo"><a href="/">Cars</a></div>
+        <div className="toolbar_logo"><Link to="/">Cars</Link></div>
         <div className="spacer" />
         <div className="toolbar_navigation_items">
           <ul>

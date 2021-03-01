@@ -2,17 +2,17 @@ import axios from 'axios';
 
 const GetFavoriteCarList = optionsList => async dispatch => {
   dispatch({
-    type: 'CAR_LIST_LOADING',
+    type: 'FAV_LIST_LOADING',
   });
 
   axios.request(optionsList).then(response => {
     dispatch({
-      type: 'CAR_LIST_SUCCESS',
+      type: 'FAV_LIST_SUCCESS',
       payload: response.data.data,
     });
   }).catch(() => {
     dispatch({
-      type: 'CAR_LIST_FAIL',
+      type: 'FAV_LIST_FAIL',
     });
   });
 };
