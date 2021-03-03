@@ -5,16 +5,15 @@ const UserRegister = data => async dispatch => {
     type: 'USER_CREATE_LOADING',
   });
 
-  axios.post('http://localhost:3001/api/v1/users',
+  axios.post('http://localhost:4000/users',
     {
-      email: data.email,
+      username: data.username,
       password: data.password,
-      password_confirmation: data.passwordConfirmation,
     }).then(response => {
     localStorage.setItem('jwtoken', response.data);
     dispatch({
       type: 'USER_CREATE_SUCCESS',
-      payload: response,
+      payload: response.data,
     });
   }).catch(() => {
     dispatch({

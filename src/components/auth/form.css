@@ -1,6 +1,5 @@
 .signin p {
   font-size: 25px;
-  margin-top: 100px;
 }
 
 .signin-form {
@@ -16,7 +15,6 @@
 
 .signup p {
   font-size: 25px;
-  margin-top: 100px;
 }
 
 .signup-form {
@@ -27,5 +25,11 @@
 }
 
 .signup-form input {
-  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.cancelSign {
+  width: 300px;
+  text-decoration: none;
+  color: gray;
 }

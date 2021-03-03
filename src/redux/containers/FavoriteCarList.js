@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
@@ -10,15 +10,15 @@ const FavoriteCarList = () => {
   const dispatch = useDispatch();
   const favoriteCarList = useSelector(state => state.FavoriteCarList.data);
   const CarList = useSelector(state => state.CarList.data);
-
+  console.log(CarList);
   const loggedInUser = localStorage.getItem('jwtoken');
 
   const result = jwtDecode(loggedInUser);
-  const userId = result.id;
+  const userId = result.user_id;
 
   const optionsList = {
     method: 'GET',
-    url: 'http://localhost:3001/api/v1/likes',
+    url: 'http://localhost:4000/favs',
     headers: {
       Authorization: `Bearer ${loggedInUser}`,
     },
@@ -83,7 +83,11 @@ const FavoriteCarList = () => {
   };
 
   return (
-    <div>
+    <div className="fav-container">
+      <div className="car-header">
+        <h2>My Favorite List</h2>
+        <Link to="/" className="home-link">Home</Link>
+      </div>
       {showData()}
     </div>
   );

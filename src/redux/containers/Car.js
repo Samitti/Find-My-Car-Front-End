@@ -1,10 +1,10 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import GetCarList from '../actions/carActions';
-// import likeCar from '../actions/addLike';
 
 const Car = props => {
   const { match } = props;
@@ -24,9 +24,12 @@ const Car = props => {
       {car.id === gotIdInt
         ? (
           <div className="carItemCar">
+            <div className="car-header">
+              <h2>Car Details</h2>
+              <Link to="/" className="home-link">Home</Link>
+            </div>
             <img className="caritemImgCar" src={car.image} alt={car.id} />
             <div className="car-detail-table">
-              <h2>Car Details</h2>
               <p className="car-name">
                 <span>Car Name: </span>
                 {car.name}
@@ -49,13 +52,22 @@ const Car = props => {
     const loggedInUser = localStorage.getItem('jwtoken');
     const result = jwtDecode(loggedInUser);
     const formData = new FormData();
-    formData.append('user_id', result.id);
+    const checkRes = res => {
+      setTimeout(() => {
+        if (res.ok) {
+          console.log('Added Fav');
+        } else {
+          console.log('Fav Fail!');
+        }
+      }, 2000);
+    };
+    formData.append('user_id', result.user_id);
     formData.append('car_id', gotIdInt);
-    fetch('http://localhost:3001/api/v1/likes', {
+    fetch('http://localhost:4000/favs', {
       method: 'POST',
       body: formData,
       headers: { Authorization: `Bearer ${loggedInUser}` },
-    }).then(response => console.log(response)).catch(error => console.log(error));
+    }).then(response => checkRes(response)).catch(error => console.log(error));
   };
   const showData = () => {
     if (!_.isEmpty(carList)) {

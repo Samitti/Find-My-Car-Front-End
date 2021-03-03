@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import GetCarList from '../actions/carActions';
+import Toolbar from '../../components/Toolbar/Toolbar';
 import '../../App.css';
 
 const CarList = () => {
@@ -12,7 +13,7 @@ const CarList = () => {
 
   const optionsList = {
     method: 'GET',
-    url: 'http://localhost:3001/api/v1/cars',
+    url: 'http://localhost:4000/cars',
     headers: {
       Authorization: `Bearer ${loggedInUser}`,
     },
@@ -62,6 +63,7 @@ const CarList = () => {
 
   return (
     <div>
+      <Toolbar />
       {showData()}
     </div>
   );

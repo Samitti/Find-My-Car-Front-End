@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './AddCar.css';
 // import { useForm } from 'react-hook-form';
 // import { useDispatch } from 'react-redux';
@@ -13,7 +14,7 @@ class AddCar extends Component {
       name: '',
       model: '',
       price: '',
-      featuredImage: null,
+      image: null,
     };
   }
 
@@ -31,16 +32,16 @@ class AddCar extends Component {
       name,
       model,
       price,
-      featuredImage,
+      image,
     } = this.state;
     const formData = new FormData();
     formData.append('name', name);
     formData.append('model', model);
     formData.append('price', price);
-    formData.append('featured_image', featuredImage);
+    formData.append('image', image);
     const loggedInUser = localStorage.getItem('jwtoken');
 
-    fetch('http://localhost:3001/api/v1/cars', {
+    fetch('http://localhost:4000/cars', {
       method: 'POST',
       body: formData,
       headers: {"Authorization" : `Bearer ${loggedInUser}`}
@@ -61,6 +62,7 @@ class AddCar extends Component {
 
         <input type="submit" />
       </form>
+      <Link to="/" className="cancelSign">Cancel</Link>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import UserRegister from '../../redux/actions/signUpActions';
 import './form.css';
 
@@ -31,13 +31,11 @@ export default function Registration() {
     <div className="signup">
       <p>Sign Up</p>
       <form className="signup-form" onSubmit={handleSubmit(onSubmit)}>
-
-        <input name="email" type="email" ref={register} placeholder="Email" />
+        <input name="username" type="text" ref={register} placeholder="Username" />
         <input name="password" type="password" ref={register} placeholder="Password" />
-        <input name="passwordConfirmation" type="password" ref={register} placeholder="Confirm Password" />
-
         <input type="submit" />
       </form>
+      <Link to="/" className="cancelSign">Cancel</Link>
     </div>
   );
 }

@@ -6,7 +6,6 @@ const likeCar = data => {
       user_id: data.user_id,
       car_id: data.car_id,
     }).then(res => {
-    alert('Added to favorite');
     console.log(res);
   }).catch(error => {
     console.log(error);

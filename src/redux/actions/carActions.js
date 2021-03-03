@@ -6,8 +6,6 @@ const GetCarList = optionsList => async dispatch => {
   });
 
   axios.request(optionsList).then(response => {
-    console.log(response.data);
-
     dispatch({
       type: 'CAR_LIST_SUCCESS',
       payload: response.data,
