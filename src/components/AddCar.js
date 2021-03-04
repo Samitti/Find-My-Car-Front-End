@@ -23,7 +23,7 @@ class AddCar extends Component {
   };
 
   onImageChange = event => {
-    this.setState({ featuredImage: event.target.files[0] });
+    this.setState({ image: event.target.files[0] });
   };
 
   handleSubmit = event => {
@@ -40,6 +40,7 @@ class AddCar extends Component {
     formData.append('price', price);
     formData.append('image', image);
     const loggedInUser = localStorage.getItem('jwtoken');
+    console.log(image);
 
     fetch('http://localhost:4000/cars', {
       method: 'POST',
@@ -54,12 +55,10 @@ class AddCar extends Component {
       <div className="add-car">
         <p>Add Car</p>
       <form className="add-car-form" onSubmit={this.handleSubmit}>
-
         <input name="name" type="text" value={this.state.name} onChange={this.handleChange} placeholder="Car Name" />
         <input name="model" type="text" value={this.state.model} onChange={this.handleChange} placeholder="Car Model" />
         <input name="price" type="number" value={this.state.price} onChange={this.handleChange} placeholder="Car Price" />
         <input type="file" accept="image/*" multiple={false} onChange={this.onImageChange} />
-
         <input type="submit" />
       </form>
       <Link to="/" className="cancelSign">Cancel</Link>

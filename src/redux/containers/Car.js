@@ -1,7 +1,7 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import GetCarList from '../actions/carActions';
@@ -26,7 +26,7 @@ const Car = props => {
           <div className="carItemCar">
             <div className="car-header">
               <h2>Car Details</h2>
-              <Link to="/" className="home-link">Home</Link>
+              <a href="/" className="home-link">Home</a>
             </div>
             <img className="caritemImgCar" src={car.image} alt={car.id} />
             <div className="car-detail-table">
@@ -55,7 +55,7 @@ const Car = props => {
     const checkRes = res => {
       setTimeout(() => {
         if (res.ok) {
-          console.log('Added Fav');
+          dispatch(GetCarList());
         } else {
           console.log('Fav Fail!');
         }

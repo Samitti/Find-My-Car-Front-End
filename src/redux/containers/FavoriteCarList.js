@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import GetFavoriteCarList from '../actions/favoriteActions';
+import GetCarList from '../actions/carActions';
 import '../../App.css';
 
 const FavoriteCarList = () => {
@@ -15,6 +16,20 @@ const FavoriteCarList = () => {
 
   const result = jwtDecode(loggedInUser);
   const userId = result.user_id;
+
+  const optionsListCar = {
+    method: 'GET',
+    url: 'http://localhost:4000/cars',
+    headers: {
+      Authorization: `Bearer ${loggedInUser}`,
+    },
+  };
+
+  React.useEffect(() => {
+    if (CarList.length === 0) {
+      dispatch(GetCarList(optionsListCar));
+    }
+  }, [dispatch]);
 
   const optionsList = {
     method: 'GET',
