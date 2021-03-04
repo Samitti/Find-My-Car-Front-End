@@ -16,14 +16,18 @@ export default function SignIn() {
       if (loggedInUser) {
         history.push('/cars');
       } else {
-        alert('Sin In Fail!');
+        localStorage.setItem('signInErr', true);
+        history.push('/SignIn');
       }
     }, 4000);
   };
   const onSubmit = data => {
     dispatch(UserCreate(data));
+    localStorage.setItem('signInErr', '');
     login();
   };
+
+  const erroMsg = (<h4>Not Valid Username or Password</h4>);
   return (
     <div className="signin">
       <p>Sin In</p>
@@ -33,6 +37,7 @@ export default function SignIn() {
         <input type="submit" />
       </form>
       <Link to="/" className="cancelSign">Cancel</Link>
+      {localStorage.getItem('signInErr') ? erroMsg : ''}
     </div>
   );
 }

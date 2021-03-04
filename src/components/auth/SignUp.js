@@ -18,7 +18,8 @@ export default function Registration() {
       if (loggedInUser) {
         history.push('/cars');
       } else {
-        alert('Sin Up Fail!');
+        localStorage.setItem('signInErr', true);
+        history.push('/SignUp');
       }
     }, 4000);
   };
@@ -27,6 +28,7 @@ export default function Registration() {
     login();
   };
 
+  const erroMsg = (<h4>Not Valid Username or Password</h4>);
   return (
     <div className="signup">
       <p>Sign Up</p>
@@ -36,6 +38,7 @@ export default function Registration() {
         <input type="submit" />
       </form>
       <Link to="/" className="cancelSign">Cancel</Link>
+      {localStorage.getItem('signInErr') ? erroMsg : ''}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import CarList from './CarList';
 import car from '../../imgs/kia.jpg';
 
 export default function LoadingPage() {
+  localStorage.setItem('signInErr', '');
   const loggedInUser = localStorage.getItem('jwtoken');
   const welcome = (
     <div className="landing-age">

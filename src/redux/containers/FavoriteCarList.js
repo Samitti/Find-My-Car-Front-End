@@ -11,7 +11,6 @@ const FavoriteCarList = () => {
   const dispatch = useDispatch();
   const favoriteCarList = useSelector(state => state.FavoriteCarList.data);
   const CarList = useSelector(state => state.CarList.data);
-  console.log(CarList);
   const loggedInUser = localStorage.getItem('jwtoken');
 
   const result = jwtDecode(loggedInUser);
