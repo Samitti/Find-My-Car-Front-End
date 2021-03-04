@@ -5,7 +5,7 @@ const UserCreate = data => async dispatch => {
     type: 'USER_CREATE_LOADING',
   });
 
-  axios.post('http://localhost:4000/login',
+  axios.post('https://sami-api-v1.herokuapp.com//login',
     {
       username: data.username,
       password: data.password,

@@ -42,7 +42,7 @@ class AddCar extends Component {
     const loggedInUser = localStorage.getItem('jwtoken');
     console.log(image);
 
-    fetch('http://localhost:4000/cars', {
+    fetch('https://sami-api-v1.herokuapp.com//cars', {
       method: 'POST',
       body: formData,
       headers: {"Authorization" : `Bearer ${loggedInUser}`}

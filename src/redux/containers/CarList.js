@@ -13,7 +13,7 @@ const CarList = () => {
 
   const optionsList = {
     method: 'GET',
-    url: 'http://localhost:4000/cars',
+    url: 'https://sami-api-v1.herokuapp.com//cars',
     headers: {
       Authorization: `Bearer ${loggedInUser}`,
     },

@@ -63,7 +63,7 @@ const Car = props => {
     };
     formData.append('user_id', result.user_id);
     formData.append('car_id', gotIdInt);
-    fetch('http://localhost:4000/favs', {
+    fetch('https://sami-api-v1.herokuapp.com//favs', {
       method: 'POST',
       body: formData,
       headers: { Authorization: `Bearer ${loggedInUser}` },

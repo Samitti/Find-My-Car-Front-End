@@ -19,7 +19,7 @@ const FavoriteCarList = () => {
 
   const optionsListCar = {
     method: 'GET',
-    url: 'http://localhost:4000/cars',
+    url: 'https://sami-api-v1.herokuapp.com//cars',
     headers: {
       Authorization: `Bearer ${loggedInUser}`,
     },
@@ -33,7 +33,7 @@ const FavoriteCarList = () => {
 
   const optionsList = {
     method: 'GET',
-    url: 'http://localhost:4000/favs',
+    url: 'https://sami-api-v1.herokuapp.com//favs',
     headers: {
       Authorization: `Bearer ${loggedInUser}`,
     },
