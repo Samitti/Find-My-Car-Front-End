@@ -1,33 +1,42 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import _ from 'lodash';
 import { Link, useHistory } from 'react-router-dom';
-// import UserCreate from '../../redux/actions/signInActions';
+import { fetchUser } from '../../redux/user/userActions';
 import './form.css';
 
 export default function SignIn() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
+  const userData = useSelector(state => state.user);
+
   const history = useHistory();
-  let loggedInUser = '';
   const login = () => {
-    setTimeout(() => {
-      loggedInUser = localStorage.getItem('jwtoken');
-      if (loggedInUser) {
-        history.push('/cars');
-      } else {
-        localStorage.setItem('signInErr', true);
-        history.push('/SignIn');
-      }
-    }, 4000);
-  };
-  const onSubmit = data => {
-    dispatch(UserCreate(data));
-    localStorage.setItem('signInErr', '');
-    login();
+    if (userData.loading) {
+      return <p>Loading...</p>;
+    }
+    if (userData.error !== '') {
+      return <h6>Please Check Username or Password</h6>;
+    }
+    if (!_.isEmpty(userData) && userData.logedIn) {
+      history.push('/cars');
+    }
+    return <p />;
   };
 
-  const erroMsg = (<h4>Not Valid Username or Password</h4>);
+  const onSubmit = data => {
+    const optionsList = {
+      method: 'POST',
+      url: 'http://127.0.0.1:4000/sessions',
+      user: {
+        username: data.username,
+        password: data.password,
+      },
+    };
+    dispatch(fetchUser(optionsList));
+  };
+
   return (
     <div className="signin">
       <p>Sin In</p>
@@ -37,7 +46,7 @@ export default function SignIn() {
         <input type="submit" />
       </form>
       <Link to="/" className="cancelSign">Cancel</Link>
-      {localStorage.getItem('signInErr') ? erroMsg : ''}
+      <p>{login()}</p>
     </div>
   );
 }

@@ -1,44 +1,52 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import _ from 'lodash';
 import { Link, useHistory } from 'react-router-dom';
-// import UserRegister from '../../redux/actions/signUpActions';
+import { fetchUser } from '../../redux/user/userActions';
 import './form.css';
-
-// import Headers from "./Header";
 
 export default function Registration() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
+  const userData = useSelector(state => state.user);
+
   const history = useHistory();
-  let loggedInUser = '';
   const login = () => {
-    setTimeout(() => {
-      loggedInUser = localStorage.getItem('jwtoken');
-      if (loggedInUser) {
-        history.push('/cars');
-      } else {
-        localStorage.setItem('signInErr', true);
-        history.push('/SignUp');
-      }
-    }, 4000);
-  };
-  const onSubmit = data => {
-    dispatch(UserRegister(data));
-    login();
+    if (userData.loading) {
+      return <p>Loading...</p>;
+    }
+    if (userData.error !== '') {
+      return <h6>Please Try Other Username or Password</h6>;
+    }
+    if (!_.isEmpty(userData) && userData.logedIn) {
+      history.push('/cars');
+    }
+    return <p />;
   };
 
-  const erroMsg = (<h4>Not Valid Username or Password</h4>);
+  const onSubmit = data => {
+    const optionsList = {
+      method: 'POST',
+      url: 'http://127.0.0.1:4000/users',
+      user: {
+        username: data.username,
+        password: data.password,
+      },
+    };
+    dispatch(fetchUser(optionsList));
+  };
+
   return (
     <div className="signup">
-      <p>Sign Up</p>
-      <form className="signup-form" onSubmit={handleSubmit(onSubmit)}>
+      <p>Sin Up</p>
+      <form className="signin-form" onSubmit={handleSubmit(onSubmit)}>
         <input name="username" type="text" ref={register} placeholder="Username" />
         <input name="password" type="password" ref={register} placeholder="Password" />
         <input type="submit" />
       </form>
       <Link to="/" className="cancelSign">Cancel</Link>
-      {localStorage.getItem('signInErr') ? erroMsg : ''}
+      <p>{login()}</p>
     </div>
   );
 }

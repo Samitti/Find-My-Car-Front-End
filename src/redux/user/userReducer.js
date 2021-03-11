@@ -5,9 +5,10 @@ import {
 } from './userTypes';
 
 const initialState = {
-  loading: true,
+  loading: false,
   user: [],
   error: '',
+  logedIn: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +18,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: '',
+        logedIn: false,
       };
 
     case FETCH_USER_SUCCESS:
@@ -24,6 +26,7 @@ const reducer = (state = initialState, action) => {
         loading: false,
         user: action.payload,
         error: '',
+        logedIn: true,
       };
 
     case FETCH_USER_FAILURE:
@@ -31,6 +34,7 @@ const reducer = (state = initialState, action) => {
         loading: false,
         user: [],
         error: action.payload,
+        logedIn: false,
       };
 
     default:

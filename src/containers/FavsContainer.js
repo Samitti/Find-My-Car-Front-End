@@ -18,8 +18,6 @@ function FavsContainer({ favData, fetchFavs }) {
     fetchFavs(optionsList);
   }, []);
 
-  console.log(optionsList);
-
   const showData = () => {
     if (favData.loading) {
       return <p>Loading...</p>;

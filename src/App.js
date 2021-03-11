@@ -21,8 +21,8 @@ const App = () => (
       <main className="app-main">
         <Switch>
           <Route path="/" exact component={LandingPage} />
-          <FavsContainer />
-          <CarsContainer />
+          <Route path="/Cars" exact component={CarsContainer} />
+          <Route path="/Favorite" exact component={FavsContainer} />
           <Route path="/SignIn" exact component={SignIn} />
           <Route path="/SignUp" exact component={SignUp} />
           {/* <Route path="/" exact component={LandingPage} />

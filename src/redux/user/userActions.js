@@ -21,9 +21,15 @@ export const fetchUserFailure = error => ({
 
 export const fetchUser = optionsList => dispatch => {
   dispatch(fetchUserRequest);
-  axios.request(optionsList).then(response => {
-    const user = response;
+  axios.post(optionsList.url,
+    {
+      username: optionsList.user.username,
+      password: optionsList.user.password,
+    }).then(response => {
+    const user = response.data;
+    localStorage.setItem('jwtoken', response.data);
     dispatch(fetchUserSuccess(user));
+    console.log(user);
   }).catch(error => {
     const errorMsg = error.message;
     dispatch(fetchUserFailure(errorMsg));

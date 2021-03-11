@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+// import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { fetchCars } from '../redux/cars/carActions';
 
-function CarsContainer({ carData, fetchCars }) {
-  const loggedInUser = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3fQ.kPxvpXMFUMcI-LnBA9ngNl8mL00Sk4OPFn8lElNcXHM';
+function CarsContainer() {
+  const dispatch = useDispatch();
+  const carData = useSelector(state => state.carList);
+  const loggedInUser = localStorage.getItem('jwtoken');
   const optionsList = {
     method: 'GET',
     url: 'http://127.0.0.1:4000/cars',
@@ -15,7 +17,8 @@ function CarsContainer({ carData, fetchCars }) {
   };
 
   useEffect(() => {
-    fetchCars(optionsList);
+    // fetchCars(optionsList);
+    dispatch(fetchCars(optionsList));
   }, []);
 
   const showData = () => {
@@ -51,17 +54,17 @@ function CarsContainer({ carData, fetchCars }) {
   );
 }
 
-const mapStateToProps = state => ({
-  carData: state.carList,
-});
+// // const mapStateToProps = state => ({
+// //   carData: state.carList,
+// // });
 
-const mapDispatchToProps = dispatch => ({
-  fetchCars: optionsList => dispatch(fetchCars(optionsList)),
-});
+// const mapDispatchToProps = dispatch => ({
+//   fetchCars: optionsList => dispatch(fetchCars(optionsList)),
+// });
 
-CarsContainer.propTypes = {
-  carData: PropTypes.instanceOf(Array).isRequired,
-  fetchCars: PropTypes.func.isRequired,
-};
+// CarsContainer.propTypes = {
+//   // carData: PropTypes.instanceOf(Array).isRequired,
+//   fetchCars: PropTypes.func.isRequired,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarsContainer);
+export default CarsContainer;
