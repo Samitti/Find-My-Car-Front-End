@@ -2,46 +2,48 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { fetchCars } from '../redux/cars/carActions';
+import { fetchFavs } from '../redux/favs/favActions';
 
-function CarsContainer({ carData, fetchCars }) {
+function FavsContainer({ favData, fetchFavs }) {
   const loggedInUser = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3fQ.kPxvpXMFUMcI-LnBA9ngNl8mL00Sk4OPFn8lElNcXHM';
   const optionsList = {
     method: 'GET',
-    url: 'http://127.0.0.1:4000/cars',
+    url: 'http://127.0.0.1:4000/favs',
     headers: {
       Authorization: `Bearer ${loggedInUser}`,
     },
   };
 
   useEffect(() => {
-    fetchCars(optionsList);
+    fetchFavs(optionsList);
   }, []);
 
+  console.log(optionsList);
+
   const showData = () => {
-    if (carData.loading) {
+    if (favData.loading) {
       return <p>Loading...</p>;
     }
-    if (carData.error !== '') {
+    if (favData.error !== '') {
       return (
         <div>
-          <p>{carData.error}</p>
+          <p>{favData.error}</p>
           <p>Please login first!</p>
         </div>
       );
     }
-    if (!_.isEmpty(carData)) {
+    if (!_.isEmpty(favData)) {
       return (
         <div className="carListContainer">
           <div className="carLists">
             {/* {carElements} */}
-            <p>Loaded Cars</p>
+            <p>Loaded Favs</p>
           </div>
         </div>
       );
     }
 
-    return <p>Unable to get data!</p>;
+    return <p>Unable to get Favs!</p>;
   };
 
   return (
@@ -52,16 +54,16 @@ function CarsContainer({ carData, fetchCars }) {
 }
 
 const mapStateToProps = state => ({
-  carData: state.carList,
+  favData: state.favList,
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchCars: optionsList => dispatch(fetchCars(optionsList)),
+  fetchFavs: optionsList => dispatch(fetchFavs(optionsList)),
 });
 
-CarsContainer.propTypes = {
-  carData: PropTypes.instanceOf(Array).isRequired,
-  fetchCars: PropTypes.func.isRequired,
+FavsContainer.propTypes = {
+  favData: PropTypes.instanceOf(Array).isRequired,
+  fetchFavs: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FavsContainer);

@@ -9,9 +9,9 @@ export const fetchCarsRequest = () => ({
   type: FETCH_CARS_REQUEST,
 });
 
-export const fetchCarsSuccess = cars => ({
+export const fetchCarsSuccess = data => ({
   type: FETCH_CARS_SUCCESS,
-  payload: cars,
+  payload: data,
 });
 
 export const fetchCarsFailure = error => ({
@@ -19,15 +19,25 @@ export const fetchCarsFailure = error => ({
   payload: error,
 });
 
-export const fetchCars = () => dispatch => {
+export const fetchCars = optionsList => dispatch => {
   dispatch(fetchCarsRequest);
-  axios.get('https://jsonplaceholder.typicode.com/users')
-    .then(response => {
-      const cars = response.data;
-      dispatch(fetchCarsSuccess(cars));
-    })
-    .catch(error => {
-      const errorMsg = error.message;
-      dispatch(fetchCarsFailure(errorMsg));
-    });
+  axios.request(optionsList).then(response => {
+    const cars = response;
+    dispatch(fetchCarsSuccess(cars));
+  }).catch(error => {
+    const errorMsg = error.message;
+    dispatch(fetchCarsFailure(errorMsg));
+  });
 };
+
+// export const fetchCars = optionsList => async dispatch => {
+//   dispatch(fetchCarsRequest);
+
+//   try {
+//     const carData = await axios.request(optionsList);
+//     dispatch(fetchCarsSuccess(carData));
+//   } catch (error) {
+//     const errorMsg = error.message;
+//     dispatch(fetchCarsFailure(errorMsg));
+//   }
+// };
