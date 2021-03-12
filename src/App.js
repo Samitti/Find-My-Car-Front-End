@@ -1,12 +1,8 @@
 import React from 'react';
 import {
   BrowserRouter, Switch, Route,
-
 } from 'react-router-dom';
-
-// import CarList from './redux/containers/CarList';
 import LandingPage from './containers/LandingPage';
-// import FavoriteCarList from './redux/containers/FavoriteCarList';
 import Car from './containers/Car';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
@@ -27,9 +23,6 @@ const App = () => (
           <Route path="/SignIn" exact component={SignIn} />
           <Route path="/SignUp" exact component={SignUp} />
           <Route path="/AddCar" exact component={AddCar} />
-          {/* <Route path="/" exact component={LandingPage} />
-          <Route path="/Favorite" exact component={FavoriteCarList} />
-           */}
         </Switch>
       </main>
     </div>

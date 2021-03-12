@@ -29,15 +29,3 @@ export const fetchCars = optionsList => dispatch => {
     dispatch(fetchCarsFailure(errorMsg));
   });
 };
-
-// export const fetchCars = optionsList => async dispatch => {
-//   dispatch(fetchCarsRequest);
-
-//   try {
-//     const carData = await axios.request(optionsList);
-//     dispatch(fetchCarsSuccess(carData));
-//   } catch (error) {
-//     const errorMsg = error.message;
-//     dispatch(fetchCarsFailure(errorMsg));
-//   }
-// };

@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './AddCar.css';
-// import { useForm } from 'react-hook-form';
-// import { useDispatch } from 'react-redux';
-// import CreateCar from '../redux/actions/addCarAction';
-// import axios from 'axios';
-/* eslint-disable */
+
 class AddCar extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +43,7 @@ class AddCar extends Component {
     fetch('http://127.0.0.1:4000/cars', {
       method: 'POST',
       body: formData,
-      headers: {"Authorization" : `Bearer ${loggedInUser}`}
+      headers: { Authorization: `Bearer ${loggedInUser}` },
     }).then(response => {
       if (response.ok) {
         this.setState({ addcarMsg: true });
@@ -58,24 +54,32 @@ class AddCar extends Component {
   }
 
   render() {
+    const {
+      name,
+      model,
+      price,
+      addcarMsg,
+    } = this.state;
     return (
       <div className="add-car">
         <p>Add Car</p>
-      <form className="add-car-form" onSubmit={this.handleSubmit}>
-        <input name="name" type="text" value={this.state.name} onChange={this.handleChange} placeholder="Car Name" />
-        <input name="model" type="text" value={this.state.model} onChange={this.handleChange} placeholder="Car Model" />
-        <input name="price" type="number" value={this.state.price} onChange={this.handleChange} placeholder="Car Price" />
-        <input type="file" accept="image/*" multiple={false} onChange={this.onImageChange} />
-        <input type="submit" />
-      </form>
-      <Link to="/" className="cancelSign">Cancel</Link>
-      <div>
-        {this.state.addcarMsg ? 
+        <form className="add-car-form" onSubmit={this.handleSubmit}>
+          <input name="name" type="text" value={name} onChange={this.handleChange} placeholder="Car Name" />
+          <input name="model" type="text" value={model} onChange={this.handleChange} placeholder="Car Model" />
+          <input name="price" type="number" value={price} onChange={this.handleChange} placeholder="Car Price" />
+          <input type="file" accept="image/*" multiple={false} onChange={this.onImageChange} />
+          <input type="submit" />
+        </form>
+        <Link to="/" className="cancelSign">Cancel</Link>
         <div>
-          <p> Added Car</p>
-          <a href="/" >Go to Home Page</a>
-        </div> : <p> </p>}
-      </div>
+          {addcarMsg
+            ? (
+              <div>
+                <p> Added Car</p>
+                <a href="/">Go to Home Page</a>
+              </div>
+            ) : <p> </p>}
+        </div>
       </div>
     );
   }
