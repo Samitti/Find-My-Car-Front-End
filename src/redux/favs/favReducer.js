@@ -22,14 +22,14 @@ const reducer = (state = initialState, action) => {
     case FETCH_FAVS_SUCCESS:
       return {
         loading: false,
-        cars: action.payload,
+        favs: action.payload,
         error: '',
       };
 
     case FETCH_FAVS_FAILURE:
       return {
         loading: false,
-        cars: [],
+        favs: [],
         error: action.payload,
       };
 

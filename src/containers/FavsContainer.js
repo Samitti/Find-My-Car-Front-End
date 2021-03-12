@@ -1,12 +1,28 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
+import { fetchCars } from '../redux/cars/carActions';
 import { fetchFavs } from '../redux/favs/favActions';
+import Toolbar from '../components/Toolbar/Toolbar';
 
-function FavsContainer({ favData, fetchFavs }) {
-  const loggedInUser = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3fQ.kPxvpXMFUMcI-LnBA9ngNl8mL00Sk4OPFn8lElNcXHM';
+function FavsContainer() {
+  const dispatch = useDispatch();
+  const carData = useSelector(state => state.carList);
+  const favData = useSelector(state => state.favList);
+  const loggedInUser = localStorage.getItem('jwtoken');
   const optionsList = {
+    method: 'GET',
+    url: 'http://127.0.0.1:4000/cars',
+    headers: {
+      Authorization: `Bearer ${loggedInUser}`,
+    },
+  };
+
+  useEffect(() => {
+    dispatch(fetchCars(optionsList));
+  }, []);
+
+  const optionsListFav = {
     method: 'GET',
     url: 'http://127.0.0.1:4000/favs',
     headers: {
@@ -15,53 +31,71 @@ function FavsContainer({ favData, fetchFavs }) {
   };
 
   useEffect(() => {
-    fetchFavs(optionsList);
+    dispatch(fetchFavs(optionsListFav));
   }, []);
 
+  const freshData = carData.cars.length === 0 ? [] : carData.cars.data.cars;
+  const favCarsAll = favData.favs.length === 0 ? [] : favData.favs.data.data;
+  const favCarIds = favCarsAll.map(car => car.car_id);
+
+  const myFav = freshData.map(car => (
+    <article key={car.id} className="favItem">
+      {favCarIds.includes(car.id)
+        ? (
+          <div className="carItem">
+            <img className="caritemImgCar" src={car.image} alt={car.id} />
+            <div className="carName">
+              <h4>My Favorate</h4>
+              <p className="car-name">
+                <span>Car Name: </span>
+                {car.name}
+              </p>
+              <p className="car-model">
+                <span>Car Model: </span>
+                {car.model}
+              </p>
+              <p className="car-price">
+                <span>Car Price: $</span>
+                {car.price}
+              </p>
+            </div>
+          </div>
+        )
+        : '' }
+    </article>
+  ));
+
   const showData = () => {
-    if (favData.loading) {
+    if (carData.loading) {
       return <p>Loading...</p>;
     }
-    if (favData.error !== '') {
+    if (carData.error !== '') {
       return (
         <div>
-          <p>{favData.error}</p>
+          <p>{carData.error}</p>
           <p>Please login first!</p>
         </div>
       );
     }
-    if (!_.isEmpty(favData)) {
+    if (!_.isEmpty(carData)) {
       return (
         <div className="carListContainer">
           <div className="carLists">
-            {/* {carElements} */}
-            <p>Loaded Favs</p>
+            {myFav}
           </div>
         </div>
       );
     }
 
-    return <p>Unable to get Favs!</p>;
+    return <p>Unable to get data!</p>;
   };
 
   return (
     <div>
+      <Toolbar />
       {showData()}
     </div>
   );
 }
 
-const mapStateToProps = state => ({
-  favData: state.favList,
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchFavs: optionsList => dispatch(fetchFavs(optionsList)),
-});
-
-FavsContainer.propTypes = {
-  favData: PropTypes.instanceOf(Array).isRequired,
-  fetchFavs: PropTypes.func.isRequired,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FavsContainer);
+export default FavsContainer;

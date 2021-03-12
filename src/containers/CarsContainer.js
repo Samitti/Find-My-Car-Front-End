@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import _ from 'lodash';
+import { fetchFavs } from '../redux/favs/favActions';
 import { fetchCars } from '../redux/cars/carActions';
+import Toolbar from '../components/Toolbar/Toolbar';
 
 function CarsContainer() {
   const dispatch = useDispatch();
@@ -17,9 +19,33 @@ function CarsContainer() {
   };
 
   useEffect(() => {
-    // fetchCars(optionsList);
     dispatch(fetchCars(optionsList));
   }, []);
+
+  const optionsListFav = {
+    method: 'GET',
+    url: 'http://127.0.0.1:4000/favs',
+    headers: {
+      Authorization: `Bearer ${loggedInUser}`,
+    },
+  };
+
+  useEffect(() => {
+    dispatch(fetchFavs(optionsListFav));
+  }, []);
+
+  const freshData = carData.cars.length === 0 ? [] : carData.cars.data.cars;
+  const carElements = freshData.map(car => (
+    <article key={car.id} className="carItem">
+      <img className="caritemImgCar" src={car.image} alt={car.id} />
+      <div className="carName">
+        <p>{car.name}</p>
+        <Link to={`./cars/${car.id}`} car={car} id="viewLink">
+          <span>VIEW CAR</span>
+        </Link>
+      </div>
+    </article>
+  ));
 
   const showData = () => {
     if (carData.loading) {
@@ -37,7 +63,7 @@ function CarsContainer() {
       return (
         <div className="carListContainer">
           <div className="carLists">
-            {/* {carElements} */}
+            {carElements}
             <p>Loaded Cars</p>
           </div>
         </div>
@@ -49,22 +75,10 @@ function CarsContainer() {
 
   return (
     <div>
+      <Toolbar />
       {showData()}
     </div>
   );
 }
-
-// // const mapStateToProps = state => ({
-// //   carData: state.carList,
-// // });
-
-// const mapDispatchToProps = dispatch => ({
-//   fetchCars: optionsList => dispatch(fetchCars(optionsList)),
-// });
-
-// CarsContainer.propTypes = {
-//   // carData: PropTypes.instanceOf(Array).isRequired,
-//   fetchCars: PropTypes.func.isRequired,
-// };
 
 export default CarsContainer;

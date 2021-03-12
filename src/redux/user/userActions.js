@@ -29,7 +29,6 @@ export const fetchUser = optionsList => dispatch => {
     const user = response.data;
     localStorage.setItem('jwtoken', response.data);
     dispatch(fetchUserSuccess(user));
-    console.log(user);
   }).catch(error => {
     const errorMsg = error.message;
     dispatch(fetchUserFailure(errorMsg));
