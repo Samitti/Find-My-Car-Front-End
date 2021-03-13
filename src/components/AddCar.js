@@ -40,7 +40,7 @@ class AddCar extends Component {
     const loggedInUser = localStorage.getItem('jwtoken');
     localStorage.setItem('addCarMsg', '');
 
-    fetch('http://127.0.0.1:4000/cars', {
+    fetch('https://sami-api-v1.herokuapp.com/cars', {
       method: 'POST',
       body: formData,
       headers: { Authorization: `Bearer ${loggedInUser}` },

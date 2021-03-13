@@ -1,7 +1,8 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
@@ -25,7 +26,7 @@ const Car = props => {
           <div className="carItemCar">
             <div className="car-header">
               <h2>Car Details</h2>
-              <a href="/" className="home-link">Home</a>
+              <Link to="/" className="home-link">Home</Link>
             </div>
             <img className="caritemImgCar" src={car.image} alt={car.id} />
             <div className="car-detail-table">
@@ -55,7 +56,7 @@ const Car = props => {
 
     formData.append('user_id', result.user_id);
     formData.append('car_id', gotIdInt);
-    fetch('http://127.0.0.1:4000/favs', {
+    fetch('https://sami-api-v1.herokuapp.com/favs', {
       method: 'POST',
       body: formData,
       headers: { Authorization: `Bearer ${loggedInUser}` },
