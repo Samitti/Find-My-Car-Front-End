@@ -28,7 +28,7 @@ export default function Registration() {
   const onSubmit = data => {
     const optionsList = {
       method: 'POST',
-      url: 'http://127.0.0.1:4000/users',
+      url: 'https://sami-api-v1.herokuapp.com/users',
       user: {
         username: data.username,
         password: data.password,

@@ -55,7 +55,7 @@ export const fetchUser = optionsList => dispatch => {
 };
 
 export const addFavCar = async (formData, loggedInUser) => {
-  fetch('http://127.0.0.1:4000/favs', {
+  fetch('https://sami-api-v1.herokuapp.com/favs', {
     method: 'POST',
     body: formData,
     headers: { Authorization: `Bearer ${loggedInUser}` },
@@ -64,7 +64,7 @@ export const addFavCar = async (formData, loggedInUser) => {
 
 export const addMyCar = (formData, loggedInUser) => dispatch => {
   dispatch(fetchCarsRequest);
-  fetch('http://127.0.0.1:4000/cars', {
+  fetch('https://sami-api-v1.herokuapp.com/cars', {
     method: 'POST',
     body: formData,
     headers: { Authorization: `Bearer ${loggedInUser}` },
