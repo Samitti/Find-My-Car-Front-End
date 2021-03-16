@@ -12,7 +12,7 @@ function CarsContainer() {
   const loggedInUser = localStorage.getItem('jwtoken');
   const optionsList = {
     method: 'GET',
-    url: 'https://sami-api-v1.herokuapp.com/cars',
+    url: 'http://127.0.0.1:4000/cars',
     headers: {
       Authorization: `Bearer ${loggedInUser}`,
     },
@@ -24,7 +24,7 @@ function CarsContainer() {
 
   const optionsListFav = {
     method: 'GET',
-    url: 'https://sami-api-v1.herokuapp.com/favs',
+    url: 'http://127.0.0.1:4000/favs',
     headers: {
       Authorization: `Bearer ${loggedInUser}`,
     },

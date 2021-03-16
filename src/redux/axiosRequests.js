@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   fetchCarsRequest,
   fetchCarsSuccess,
+  addCarsSuccess,
   fetchCarsFailure,
 } from './actions/carActions';
 import {
@@ -50,5 +51,29 @@ export const fetchUser = optionsList => dispatch => {
   }).catch(error => {
     const errorMsg = error.message;
     dispatch(fetchUserFailure(errorMsg));
+  });
+};
+
+export const addFavCar = async (formData, loggedInUser) => {
+  fetch('http://127.0.0.1:4000/favs', {
+    method: 'POST',
+    body: formData,
+    headers: { Authorization: `Bearer ${loggedInUser}` },
+  }).then(response => (!!response.ok)).catch(() => false);
+};
+
+export const addMyCar = (formData, loggedInUser) => dispatch => {
+  dispatch(fetchCarsRequest);
+  fetch('http://127.0.0.1:4000/cars', {
+    method: 'POST',
+    body: formData,
+    headers: { Authorization: `Bearer ${loggedInUser}` },
+  }).then(response => {
+    if (response.ok) {
+      dispatch(addCarsSuccess(response.data));
+    }
+  }).catch(error => {
+    const errorMsg = error.message;
+    dispatch(fetchCarsFailure(errorMsg));
   });
 };

@@ -2,9 +2,9 @@ import React from 'react';
 import jwtDecode from 'jwt-decode';
 import { useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
-
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { addFavCar } from '../redux/axiosRequests';
 
 const Car = props => {
   const { match } = props;
@@ -16,6 +16,7 @@ const Car = props => {
   const favCarsAll = favData.favs.length === 0 ? [] : favData.favs.data.data;
   const favCarIds = favCarsAll.map(car => car.car_id);
   const history = useHistory();
+  const loggedInUser = localStorage.getItem('jwtoken');
 
   const backSign = '';
 
@@ -50,23 +51,15 @@ const Car = props => {
   ));
 
   const handleFavorate = () => {
-    const loggedInUser = localStorage.getItem('jwtoken');
     const result = jwtDecode(loggedInUser);
     const formData = new FormData();
 
     formData.append('user_id', result.user_id);
     formData.append('car_id', gotIdInt);
-    fetch('https://sami-api-v1.herokuapp.com/favs', {
-      method: 'POST',
-      body: formData,
-      headers: { Authorization: `Bearer ${loggedInUser}` },
-    }).then(response => {
-      if (response.ok) {
-        history.push('/Favorite');
-      }
-    }).catch(() => {
 
-    });
+    if (addFavCar(formData, loggedInUser)) {
+      history.push('/Favorite');
+    }
   };
 
   const showData = () => {

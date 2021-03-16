@@ -1,88 +1,48 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { addMyCar } from '../redux/axiosRequests';
 import './AddCar.css';
 
-class AddCar extends Component {
-  constructor(props) {
-    super(props);
+export default function AddCar() {
+  const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
+  const addData = useSelector(state => state.carList);
+  const formData = new FormData();
+  const loggedInUser = localStorage.getItem('jwtoken');
 
-    this.state = {
-      name: '',
-      model: '',
-      price: '',
-      image: null,
-      addcarMsg: false,
-    };
-  }
-
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+  const onImageChange = event => {
+    formData.append('image', event.target.files[0]);
   };
 
-  onImageChange = event => {
-    this.setState({ image: event.target.files[0] });
+  const onSubmit = data => {
+    formData.append('name', data.name);
+    formData.append('model', data.model);
+    formData.append('price', data.price);
+    dispatch(addMyCar(formData, loggedInUser));
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const {
-      name,
-      model,
-      price,
-      image,
-
-    } = this.state;
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('model', model);
-    formData.append('price', price);
-    formData.append('image', image);
-    const loggedInUser = localStorage.getItem('jwtoken');
-    localStorage.setItem('addCarMsg', '');
-
-    fetch('https://sami-api-v1.herokuapp.com/cars', {
-      method: 'POST',
-      body: formData,
-      headers: { Authorization: `Bearer ${loggedInUser}` },
-    }).then(response => {
-      if (response.ok) {
-        this.setState({ addcarMsg: true });
-      }
-    }).catch(() => {
-      this.setState({ addcarMsg: false });
-    });
-  }
-
-  render() {
-    const {
-      name,
-      model,
-      price,
-      addcarMsg,
-    } = this.state;
-    return (
-      <div className="add-car">
-        <p>Add Car</p>
-        <form className="add-car-form" onSubmit={this.handleSubmit}>
-          <input name="name" type="text" value={name} onChange={this.handleChange} placeholder="Car Name" />
-          <input name="model" type="text" value={model} onChange={this.handleChange} placeholder="Car Model" />
-          <input name="price" type="number" value={price} onChange={this.handleChange} placeholder="Car Price" />
-          <input type="file" accept="image/*" multiple={false} onChange={this.onImageChange} />
-          <input type="submit" />
-        </form>
-        <Link to="/" className="cancelSign">Cancel</Link>
-        <div>
-          {addcarMsg
-            ? (
-              <div>
-                <p> Added Car</p>
-                <a href="/">Go to Home Page</a>
-              </div>
-            ) : <p> </p>}
-        </div>
+  return (
+    <div className="add-car">
+      <p>Add Car</p>
+      <form className="add-car-form" onSubmit={handleSubmit(onSubmit)}>
+        <input name="name" type="text" ref={register} placeholder="Car Name" />
+        <input name="model" type="text" ref={register} placeholder="Car Model" />
+        <input name="price" type="number" ref={register} placeholder="Car Price" />
+        <input type="file" accept="image/*" multiple={false} onChange={onImageChange} ref={register} />
+        <input type="submit" />
+      </form>
+      <Link to="/" className="cancelSign">Cancel</Link>
+      <div>
+        {addData.carAdded
+          ? (
+            <div>
+              <p> Added Car</p>
+              <a href="/">Go to Home Page</a>
+            </div>
+          ) : <p> </p>}
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default AddCar;
