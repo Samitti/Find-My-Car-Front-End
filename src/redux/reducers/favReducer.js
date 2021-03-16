@@ -2,7 +2,7 @@ import {
   FETCH_FAVS_REQUEST,
   FETCH_FAVS_SUCCESS,
   FETCH_FAVS_FAILURE,
-} from './favTypes';
+} from '../constants/favTypes';
 
 const initialState = {
   loading: true,

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
-import { fetchCars } from '../redux/cars/carActions';
-import { fetchFavs } from '../redux/favs/favActions';
+import { fetchCars, fetchFavs } from '../redux/axiosRequests';
+
 import Toolbar from '../components/Toolbar/Toolbar';
 
 function FavsContainer() {

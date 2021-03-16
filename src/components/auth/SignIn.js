@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import { Link, useHistory } from 'react-router-dom';
-import { fetchUser } from '../../redux/user/userActions';
+import { fetchUser } from '../../redux/axiosRequests';
 import './form.css';
 
 export default function SignIn() {

@@ -2,7 +2,7 @@ import {
   FETCH_CARS_REQUEST,
   FETCH_CARS_SUCCESS,
   FETCH_CARS_FAILURE,
-} from './carTypes';
+} from '../constants/carTypes';
 
 const initialState = {
   loading: false,
