@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
+import {
+  BrowserRouter, Switch, Route,
+} from 'react-router-dom';
+import LandingPage from './containers/LandingPage';
+import Car from './containers/Car';
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
+import AddCar from './components/AddCar';
 import './App.css';
+import FavsContainer from './containers/FavsContainer';
+import CarsContainer from './containers/CarsContainer';
 
-function App() {
-  return (
+const App = () => (
+  <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main className="app-main">
+        <Switch>
+          <Route path="/" exact component={LandingPage} />
+          <Route path="/Cars/:id" exact component={Car} />
+          <Route path="/Cars" exact component={CarsContainer} />
+          <Route path="/Favorite" exact component={FavsContainer} />
+          <Route path="/SignIn" exact component={SignIn} />
+          <Route path="/SignUp" exact component={SignUp} />
+          <Route path="/AddCar" exact component={AddCar} />
+        </Switch>
+      </main>
     </div>
-  );
-}
+  </BrowserRouter>
+);
 
 export default App;

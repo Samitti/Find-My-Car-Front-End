@@ -1,38 +1,179 @@
 .App {
   text-align: center;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-main {
+  margin-top: 64px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.home-link {
+  text-decoration: none;
+  color: gray;
+  font-size: 20px;
+  margin-right: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.carItem {
+  width: 100%;
+  margin-bottom: 50px;
+  background-color: white;
+  box-shadow: 3px 3px 10px rgb(172, 172, 172);
+}
+
+.caritemImgCar {
+  width: 100%;
+}
+
+.carName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.carName p {
+  margin-left: 20px;
+  color: gray;
+  font-weight: 500;
+}
+
+.carName h4 {
+  margin-left: 20px;
+  color: rgb(32, 32, 32);
+  font-weight: 800;
+}
+
+.carName #viewLink {
+  margin-right: 20px;
+  text-decoration: none;
+  color: gray;
+  font-weight: 500;
+}
+
+.carListContainer {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 20px;
+  padding-top: 14px;
+}
+
+.carListContainerCar {
+  width: 100%;
+}
+
+.carItemCar {
+  margin-top: -60px;
   display: flex;
   flex-direction: column;
+  align-items: baseline;
+  width: 100%;
+  margin-bottom: 50px;
+  background-color: white;
+}
+
+.cackbtn {
+  position: fixed;
+  top: 10px;
+  left: 80px;
+  margin-left: 5%;
+  width: 50px;
+  z-index: 300;
+  padding-right: 20px;
+  font-size: 25px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cackbtn a {
+  text-decoration: none;
+  color: gray;
+}
+
+.car-detail-table {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 60px;
+}
+
+.car-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.car-header h2 {
+  color: gray;
+  font-weight: 500;
+}
+
+.carItemCar h2 {
+  color: gray;
+}
+
+.carItemCar p {
+  font-size: 20px;
+  padding: 10px;
+  color: gray;
+  margin: 0;
+  padding-left: 50px;
+}
+
+.fav-button {
+  width: 100%;
+  border: none;
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  color: white;
+  background-color: tomato;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.fav-container {
+  margin-top: -50px;
+}
+
+.favItem {
+  display: flex;
+  align-items: center;
+}
+
+.landing-age {
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.landing-age img {
+  border-radius: 10px;
+}
+
+.landing-age h2 {
+  color: gray;
+}
+
+.landing-age p {
+  color: gray;
+}
+
+.landing-age .sign-links {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.landing-age .sign-links .sign-btn {
+  text-decoration: none;
+  color: gray;
+  font-weight: 600;
+  margin: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.landing-age .sign-links .sign-btn:hover {
+  color: rgb(31, 31, 31);
 }

@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Find My Car 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the final capstone project for Microverse program. In this project, I build the front-end part of Find My Car app. This app connects to the API cars-api which I built using rails and displays a list of Cars available for sale. This app is resposive, it has also user sign-up feature and also can save user favorites from the cars list. 
 
-## Available Scripts
+## Built With
+- Node js
+- React
+- React-Create-App
+- React-router-dom
+- React-redux
+- Redux
+- npm
+- ES6
+- CSS
 
-In the project directory, you can run:
 
-### `yarn start`
+[Live Demo Link](https://car-api-react.herokuapp.com/)
 
-Runs the app in the development mode.\
+
+![screenshot 1](./src/imgs/Capture.PNG)
+
+## Getting Started
+
+To get a local copy and running follow these simple example steps.
+
+### Setup
+
+- Node js
+- Clone the repo and cd in it.
+
+### Install
+
+- Run `npm install` in your terminal
+
+### Usage
+
+- Run `npm start` in your terminal
+
+Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+## Author
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+👤 **Samuel Teweldebrhan Ghebremeskel**
 
-### `yarn build`
+- Github: [@githubhandle](https://github.com/Samitti)
+- Twitter: [@twitterhandle](https://twitter.com/Samuel63734232)
+- Linkedin: [linkedin](https://www.linkedin.com/in/samuel-ghebremeskel-29685811a/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🤝 Contributing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Contributions, issues and feature requests are welcome!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Feel free to check the [issues page](https://github.com/Samitti/Find-My-Car-Front-End/issues).
 
-### `yarn eject`
+## Show your support
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Give a ⭐️ if you like this project!
