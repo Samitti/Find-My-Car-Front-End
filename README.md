@@ -1,6 +1,6 @@
 # Find My Car 
 
-This is the final capstone project for Microverse program. In this project, I build the front-end part of Find My Car app. This app connects to the API find-my-car which I built using rails and displays a list of Cars available for sale. This app is amobile version, it has also user sign-up feature and also can save user favorites from the cars list. 
+This is the final capstone project for Microverse program. In this project, I build the front-end part of Find My Car app. This app connects to the API  [find-my-car](https://github.com/Samitti/Rails-API-v1) which I built using rails and displays a list of Cars available for sale. This app is amobile version, it has also user sign-up feature and also can save user favorites from the cars list. 
 
 ## Built With
 
