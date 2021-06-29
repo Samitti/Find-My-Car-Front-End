@@ -14,7 +14,9 @@ This is the final capstone project for Microverse program. In this project, I bu
 - CSS
 
 
-[Live Demo Link](https://car-api-react.herokuapp.com/)
+[Live Demo Link Netlify](https://samtti-find-my-car-front-end.netlify.app/)
+[Live Demo Link Heroku](https://car-api-react.herokuapp.com/)
+
 
 
 ![screenshot 1](./src/imgs/Capture.PNG)
